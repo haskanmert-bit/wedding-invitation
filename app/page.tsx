@@ -742,25 +742,15 @@ if (optionData) {
       </section>
 
       <section id="dress" className="max-w-5xl mx-auto px-6 py-20">
-        <SectionTitle
-          eyebrow={t.dressCode}
-          title={t.dressTitle}
-          subtitle={
-  lang === "tr"
-    ? "Bizim için en önemli şey sizin orada olmanız!\n\nAncak davetimizin konseptine uyum sağlamanız ve akşam kombinlerinizde belirtilen tonlara yer vermeniz bizi çok mutlu eder.\n\nLütfen önerilen renk paletini referans alın — bu renklerin en açık ve zarif tonlarından daha koyu ve derin tonlarına kadar tüm geçişler uygundur."
-    : "Для нас главное — ваше присутствие!\n\nНо мы будем очень признательны, если вы поддержите стилистику нашего мероприятия в своих вечерних образах и подберёте одежду в указанных оттенках.\n\nПожалуйста, ориентируйтесь на предложенную цветовую гамму — допустимы все оттенки этих цветов: от самых нежных и светлых до более темных и глубоких."
-}
-
-Ancak davetimizin konseptine uyum sağlamanız ve akşam kombinlerinizde belirtilen tonlara yer vermeniz bizi çok mutlu eder.
-
-Lütfen önerilen renk paletini referans alın — bu renklerin en açık ve zarif tonlarından daha koyu ve derin tonlarına kadar tüm geçişler uygundur."
-              : "Для нас главное — ваше присутствие!
-
-Но мы будем очень признательны, если вы поддержите стилистику нашего мероприятия в своих вечерних образах и подберёте одежду в указанных оттенках.
-
-Пожалуйста, ориентируйтесь на предложенную цветовую гамму — допустимы все оттенки этих цветов: от самых нежных и светлых до более темных и глубоких."
-          }
-        />
+       <SectionTitle
+  eyebrow={t.dressCode}
+  title={t.dressTitle}
+  subtitle={
+    lang === "tr"
+      ? "Bizim için en önemli şey sizin orada olmanız!\n\nAncak davetimizin konseptine uyum sağlamanız ve akşam kombinlerinizde belirtilen tonlara yer vermeniz bizi çok mutlu eder.\n\nLütfen önerilen renk paletini referans alın — bu renklerin en açık ve zarif tonlarından daha koyu ve derin tonlarına kadar tüm geçişler uygundur."
+      : "Для нас главное — ваше присутствие!\n\nНо мы будем очень признательны, если вы поддержите стилистику нашего мероприятия в своих вечерних образах и подберёте одежду в указанных оттенках.\n\nПожалуйста, ориентируйтесь на предложенную цветовую гамму — допустимы все оттенки этих цветов: от самых нежных и светлых до более темных и глубоких."
+  }
+/>
  <div className="flex flex-wrap justify-center gap-6 mb-10">
   {[
     { color: "#1a1a1a", label: "Black" },
