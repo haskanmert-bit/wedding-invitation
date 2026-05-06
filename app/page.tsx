@@ -298,7 +298,6 @@ const visibleDrinkOptions = drinkOptions.length > 0 ? drinkOptions : fallbackDri
       { id: "invite", label: t.invite },
       { id: "timeline", label: t.timeline },
       { id: "dress", label: t.dressCode },
-      { id: "tips", label: t.tips },
       { id: "rsvp", label: lang === "tr" ? "Menü Seçimi" : "Выбор меню" },
       { id: "location", label: t.location },
     ],
@@ -777,32 +776,6 @@ if (optionData) {
 </div>
       </section>
 
-      <section id="tips" className="max-w-5xl mx-auto px-6 py-20">
-        <SectionTitle eyebrow={t.tips} title={t.tipsTitle} subtitle={t.tipsSubtitle} />
-        <div className="grid md:grid-cols-3 gap-6">
-          {notes.map((item) => {
-            const Icon = item.icon;
-            return (
-              <motion.div
-                key={item.title}
-                initial={{ opacity: 0, y: 18 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.45 }}
-              >
-                <Card className="h-full rounded-3xl border-stone-200 bg-[#f8f4ee] shadow-sm">
-                  <CardContent className="p-7">
-                    <Icon className="w-6 h-6 mb-4 text-stone-700" />
-                    <h3 className="text-xl font-medium">{item.title}</h3>
-                    <p className="mt-3 text-stone-600 leading-7">{item.text}</p>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            );
-          })}
-        </div>
-      </section>
-
     <section id="rsvp" className="max-w-4xl mx-auto px-6 py-20">
   
   <div className="text-center mb-12">
@@ -911,37 +884,7 @@ if (optionData) {
   </div>
 
 </section>
-<section id="tips" className="max-w-4xl mx-auto px-6 py-20">
 
-  <div className="text-center mb-12">
-    <p className="uppercase tracking-[0.35em] text-[11px] text-stone-500 mb-4">
-      {lang === "tr" ? "İPUÇLARI" : "ПОДСКАЗКИ"}
-    </p>
-
-    <h2 className="text-3xl md:text-4xl font-light text-stone-900">
-      {lang === "tr" ? "Küçük Notlar" : "Небольшие подсказки"}
-    </h2>
-  </div>
-
-  <div className="bg-white/60 backdrop-blur-xl rounded-[2rem] border border-stone-200 shadow-[0_20px_60px_rgba(0,0,0,0.08)] p-10 text-center">
-
-    <div className="w-16 h-16 rounded-full bg-stone-900 text-white flex items-center justify-center mx-auto mb-6 text-2xl">
-      🎉
-    </div>
-
-    <h3 className="text-xl font-medium text-stone-900 mb-4">
-      {lang === "tr" ? "Sürprizler" : "Сюрпризы"}
-    </h3>
-
-    <p className="text-stone-600 leading-8 max-w-xl mx-auto">
-      {lang === "tr"
-        ? "Harika bir ruh hali ile gelmeyi unutmayın! Tebrikleriniz, etkinliklere katılımınız ve yaratıcı sürprizleriniz bizi çok mutlu edecektir."
-        : "Возьмите с собой отличное настроение! Мы будем рады вашим поздравлениям, активному участию в интерактивах и творческим выступлениям."}
-    </p>
-
-  </div>
-
-</section>
 <section id="photos" className="max-w-5xl mx-auto px-6 py-24">
 
   <div className="text-center mb-14">
@@ -1024,7 +967,35 @@ if (optionData) {
     </div>
 
   </div>
+<section id="location" className="max-w-5xl mx-auto px-6 py-24">
+  <div className="text-center mb-14">
+    <h2 className="text-3xl md:text-4xl font-light tracking-wide">
+      {lang === "tr" ? "Konum" : "Локация"}
+    </h2>
+  </div>
 
+  <div className="bg-white/60 backdrop-blur-xl rounded-2xl p-6 shadow text-center">
+
+    <h3 className="text-xl font-medium mb-4">
+      Fuga Beach Club
+    </h3>
+
+    <p className="text-stone-600 mb-6">
+      {lang === "tr"
+        ? "Düğünümüz Fuga Beach Club’da gerçekleşecektir."
+        : "Наша свадьба состоится в Fuga Beach Club."}
+    </p>
+
+    <a
+      href="https://www.google.com/maps/place/FUGA+BEACH+CLUB+RESTAURANT/@36.5750178,31.8923091"
+      target="_blank"
+      className="inline-block bg-black text-white px-6 py-3 rounded-full"
+    >
+      {lang === "tr" ? "Haritada Aç" : "Открыть на карте"}
+    </a>
+
+  </div>
+</section>
 </section>
 <section className="max-w-4xl mx-auto px-6 pb-16">
   <div className="rounded-[2rem] border border-stone-200 bg-white/70 backdrop-blur shadow-sm p-8 text-center">
