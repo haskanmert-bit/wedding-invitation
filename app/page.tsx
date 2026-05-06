@@ -772,13 +772,13 @@ if (optionData) {
       </div>
 <div className="grid md:grid-cols-2 gap-6 mt-12">
   <img
-    src="/dresscode-1.jpeg"
+    src="/dresscode-1.jpeg.jpeg"
     alt="Dress Code Inspiration"
     className="rounded-[2rem] shadow-lg w-full object-cover"
   />
 
   <img
-    src="/dresscode-2.jpeg"
+    src="/dresscode-2.jpeg.jpeg"
     alt="Dress Code Inspiration"
     className="rounded-[2rem] shadow-lg w-full object-cover"
   />
