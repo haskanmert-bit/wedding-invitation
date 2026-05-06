@@ -274,7 +274,7 @@ const visibleDrinkOptions = drinkOptions.length > 0 ? drinkOptions : fallbackDri
     intro_tr:
       "Sevgili ailemiz ve yakınlarımız,\n\nHayatlarımızı birleştireceğimiz bu özel günde sevincimizi ve mutluluğumuzu sizlerle paylaşmaktan onur duyarız.",
     intro_ru:
-      "Дорогие родные и близкие!\n\nС огромной радостью приглашаем вас разделить с нами один из самых важных и счастливых дней нашей жизни.",
+      "Pодные и близкие!\n\nС огромной радостью приглашаем вас разделить с нами один из самых важных и счастливых дней нашей жизни.",
     date_label_tr: "06.06.2026",
     date_label_ru: "06.06.2026",
     day_label_tr: "Cumartesi",
