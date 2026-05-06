@@ -729,7 +729,7 @@ if (optionData) {
                         <p className="text-2xl font-light text-stone-900">{item.time}</p>
                       </div>
                       <h3 className="mt-2 text-lg font-medium">{item.title}</h3>
-                      <p className="mt-1 text-stone-600">{item.note}</p>
+                      <p className="mt-1 text-stone-600"></p>
                     </div>
                   </div>
                   <div className={`${index % 2 ? "md:order-1" : ""}`} />
