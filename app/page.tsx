@@ -747,8 +747,12 @@ if (optionData) {
           title={t.dressTitle}
           subtitle={
             lang === "tr"
-              ? "Bizim için en önemlisi sizin katılımınız. Yine de isterseniz kıyafetlerinizde düğünümüzün renk paletini ve stilini yansıtabilirsiniz."
-              : "ДДля нас главное — ваше присутствие!
+              ? "Bizim için en önemli şey sizin orada olmanız!
+
+Ancak davetimizin konseptine uyum sağlamanız ve akşam kombinlerinizde belirtilen tonlara yer vermeniz bizi çok mutlu eder.
+
+Lütfen önerilen renk paletini referans alın — bu renklerin en açık ve zarif tonlarından daha koyu ve derin tonlarına kadar tüm geçişler uygundur."
+              : "Для нас главное — ваше присутствие!
 
 Но мы будем очень признательны, если вы поддержите стилистику нашего мероприятия в своих вечерних образах и подберёте одежду в указанных оттенках.
 
