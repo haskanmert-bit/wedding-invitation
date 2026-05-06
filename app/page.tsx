@@ -770,21 +770,22 @@ if (optionData) {
       <div className="absolute -bottom-7 left-1/2 -translate-x-1/2 text-xs text-stone-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
         {item.label}
       </div>
-<div className="grid md:grid-cols-2 gap-6 mt-12">
+
+    </div>
+  ))}
+</div>
+<div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12 max-w-4xl mx-auto">
   <img
     src="/dresscode-1.jpeg.jpeg"
     alt="Dress Code Inspiration"
-    className="rounded-[2rem] shadow-lg w-full object-cover"
+    className="rounded-[2rem] shadow-lg w-full h-auto object-cover"
   />
 
   <img
     src="/dresscode-2.jpeg.jpeg"
     alt="Dress Code Inspiration"
-    className="rounded-[2rem] shadow-lg w-full object-cover"
+    className="rounded-[2rem] shadow-lg w-full h-auto object-cover"
   />
-</div>
-    </div>
-  ))}
 </div>
       </section>
 
