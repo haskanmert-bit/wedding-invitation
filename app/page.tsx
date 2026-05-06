@@ -594,6 +594,25 @@ if (optionData) {
             onClick={() => setMenuOpen((v) => !v)}
             aria-label={menuOpen ? t.close : t.menu}
           >
+            <div className="md:hidden flex items-center gap-1 rounded-full bg-white shadow-sm border border-stone-200 p-1">
+  <button
+    onClick={() => setLang("tr")}
+    className={`px-3 py-1.5 rounded-full text-xs font-medium transition ${
+      lang === "tr" ? "bg-stone-900 text-white" : "text-stone-700"
+    }`}
+  >
+    TR
+  </button>
+
+  <button
+    onClick={() => setLang("ru")}
+    className={`px-3 py-1.5 rounded-full text-xs font-medium transition ${
+      lang === "ru" ? "bg-stone-900 text-white" : "text-stone-700"
+    }`}
+  >
+    RU
+  </button>
+</div>
             {menuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
