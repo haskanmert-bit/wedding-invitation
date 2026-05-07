@@ -772,7 +772,7 @@ if (optionData) {
 />
 <div className="mt-12 max-w-4xl mx-auto px-4">
   <img
-    src="/dresscode-final.jpg"
+    src="/dresscode-final.jpg.jpeg"
     alt="Dress Code Inspiration"
     className="w-full rounded-[2rem] shadow-lg object-cover"
   />
