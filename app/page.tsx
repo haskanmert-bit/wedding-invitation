@@ -770,40 +770,11 @@ if (optionData) {
       : "Для нас главное — ваше присутствие!\n\nНо мы будем очень признательны, если вы поддержите стилистику нашего мероприятия в своих вечерних образах и подберёте одежду в указанных оттенках.\n\nПожалуйста, ориентируйтесь на предложенную цветовую гамму — допустимы все оттенки этих цветов: от самых нежных и светлых до более темных и глубоких."
   }
 />
- <div className="flex flex-wrap justify-center gap-6 mb-10">
-  {[
-    { color: "#1a1a1a", label: "Black" },
-    { color: "#2f3e2c", label: "Olive Green" },
-    { color: "#556b4f", label: "Sage Green" },
-    { color: "#8b6f47", label: "Mocha Brown" },
-    { color: "#e6dcc9", label: "Sand Beige" },
-  ].map((item) => (
-    <div key={item.color} className="relative group text-center">
-      
-      <div
-        className="w-16 h-28 rounded-full shadow-inner border border-stone-200 transition-transform duration-300 group-hover:scale-105"
-        style={{ backgroundColor: item.color }}
-      />
-
-      {/* Hover text */}
-      <div className="absolute -bottom-7 left-1/2 -translate-x-1/2 text-xs text-stone-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
-        {item.label}
-      </div>
-
-    </div>
-  ))}
-</div>
-<div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12 max-w-4xl mx-auto">
+<div className="mt-12 max-w-4xl mx-auto px-4">
   <img
-    src="/dresscode-1.jpeg.jpeg"
+    src="/dresscode-final.jpg"
     alt="Dress Code Inspiration"
-    className="rounded-[2rem] shadow-lg w-full h-auto object-cover"
-  />
-
-  <img
-    src="/dresscode-2.jpeg.jpeg"
-    alt="Dress Code Inspiration"
-    className="rounded-[2rem] shadow-lg w-full h-auto object-cover"
+    className="w-full rounded-[2rem] shadow-lg object-cover"
   />
 </div>
       </section>
