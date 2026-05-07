@@ -554,7 +554,7 @@ if (optionData) {
         backgroundImage: backgroundImageUrl ? `url(${backgroundImageUrl})` : undefined,
         backgroundSize: "cover",
         backgroundPosition: "center",
-        backgroundAttachment: "fixed",
+        backgroundAttachment: "absolute",
       }}
     >
       <style>{`
