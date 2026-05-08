@@ -361,8 +361,8 @@ export default function AdminPage() {
 const drinkCounts: Record<string, number> = {};
 
 responses.forEach((item: any) => {
-  if (item.guest_menus && Array.isArray(item.guest_menus)) {
-    item.guest_menus.forEach((guest: any) => {
+  if (item.guests && Array.isArray(item.guests)) {
+    item.guests.forEach((guest: any) => {
       if (guest.meal_choice) {
         mealCounts[guest.meal_choice] =
           (mealCounts[guest.meal_choice] || 0) + 1;
