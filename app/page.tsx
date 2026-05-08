@@ -254,13 +254,47 @@ const visibleDrinkOptions = drinkOptions.length > 0 ? drinkOptions : fallbackDri
   const [submittingRsvp, setSubmittingRsvp] = useState(false);
   const [rsvpMessage, setRsvpMessage] = useState("");
 
-  const [rsvpForm, setRsvpForm] = useState<RsvpForm>({
-    guest_name: "",
-    attending: "yes",
-    meal_choice: "",
-    drink_choice: "",
-    note: "",
+ const [rsvpForm, setRsvpForm] = useState({
+  guest_name: "",
+  attending: "",
+  meal_choice: "",
+  drink_choice: "",
+  note: "",
+})
+
+const [adultCount, setAdultCount] = useState(1);
+const [childCount, setChildCount] = useState(0);
+
+const [guestMenus, setGuestMenus] = useState([
+  { name: "", meal_choice: "", drink_choice: "" },
+]);
+
+function changeAdultCount(value: string) {
+  const count = Number(value);
+  setAdultCount(count);
+
+  setGuestMenus((prev) => {
+    const updated = [...prev];
+
+    while (updated.length < count) {
+      updated.push({ name: "", meal_choice: "", drink_choice: "" });
+    }
+
+    return updated.slice(0, count);
   });
+}
+
+function updateGuestMenu(
+  index: number,
+  key: "name" | "meal_choice" | "drink_choice",
+  value: string
+) {
+  setGuestMenus((prev) =>
+    prev.map((guest, i) =>
+      i === index ? { ...guest, [key]: value } : guest
+    )
+  );
+}
 
   const [settings, setSettings] = useState<SiteSettings>({
     bride_name_tr: "NADEZHDA",
@@ -779,8 +813,7 @@ if (optionData) {
 </div>
       </section>
 
-    <section id="rsvp" className="max-w-4xl mx-auto px-6 py-20">
-  
+   <section id="rsvp" className="max-w-4xl mx-auto px-6 py-20">
   <div className="text-center mb-12">
     <h2 className="text-3xl font-light tracking-wide">
       {lang === "tr" ? "Katılım ve Menü Seçimi" : "Подтверждение участия"}
@@ -789,83 +822,224 @@ if (optionData) {
 
   <div className="bg-white/60 backdrop-blur-md rounded-3xl shadow-lg p-8 border border-stone-200">
 
-    {/* Katılım Butonları */}
-    <div className="flex gap-4 mb-8 justify-center">
-      
-      <button
-        type="button"
-        onClick={() => updateRsvpField("attending", "yes")}
-        className={`px-6 py-3 rounded-2xl transition ${
-          rsvpForm.attending === "yes"
-            ? "bg-stone-900 text-white"
-            : "bg-white border border-stone-300"
-        }`}
-      >
-        {lang === "tr" ? "Katılıyorum" : "Я приду"}
-      </button>
+    {/* Katılım */}
+    <div className="mb-8">
+      <label className="block text-sm mb-4">
+        {lang === "tr" ? "Katılıyor musunuz?" : "Вы придёте?"}
+      </label>
 
-      <button
-        type="button"
-        onClick={() => updateRsvpField("attending", "no")}
-        className={`px-6 py-3 rounded-2xl transition ${
-          rsvpForm.attending === "no"
-            ? "bg-stone-900 text-white"
-            : "bg-white border border-stone-300"
-        }`}
-      >
-        {lang === "tr" ? "Katılamıyorum" : "Не смогу прийти"}
-      </button>
+      <div className="flex gap-4 flex-wrap">
+        <button
+          type="button"
+          onClick={() => updateRsvpField("attending", "yes")}
+          className={`px-6 py-3 rounded-2xl transition ${
+            rsvpForm.attending === "yes"
+              ? "bg-stone-900 text-white"
+              : "bg-white border border-stone-300"
+          }`}
+        >
+          {lang === "tr" ? "Katılıyorum" : "Я приду"}
+        </button>
 
+        <button
+          type="button"
+          onClick={() => updateRsvpField("attending", "no")}
+          className={`px-6 py-3 rounded-2xl transition ${
+            rsvpForm.attending === "no"
+              ? "bg-stone-900 text-white"
+              : "bg-white border border-stone-300"
+          }`}
+        >
+          {lang === "tr" ? "Katılamıyorum" : "Не смогу прийти"}
+        </button>
+      </div>
     </div>
 
-    {/* Eğer katılıyorsa */}
+    {/* Ad Soyad */}
+    <div className="mb-6">
+      <label className="block text-sm mb-2">
+        {lang === "tr" ? "Ad Soyad" : "Имя и фамилия"}
+      </label>
+
+      <input
+        type="text"
+        value={rsvpForm.guest_name}
+        onChange={(e) =>
+          updateRsvpField("guest_name", e.target.value)
+        }
+        placeholder={
+          lang === "tr"
+            ? "Adınız Soyadınız"
+            : "Ваше имя и фамилия"
+        }
+        className="w-full rounded-2xl border border-stone-300 bg-white px-4 py-3 outline-none"
+      />
+    </div>
+
+    {/* Katılıyorsa */}
     {rsvpForm.attending === "yes" && (
+      <>
+        <div className="grid md:grid-cols-2 gap-6 mb-8">
 
-      <div className="grid md:grid-cols-2 gap-6">
+          {/* Yetişkin */}
+          <div>
+            <label className="block text-sm mb-2">
+              {lang === "tr"
+                ? "Yetişkin Sayısı"
+                : "Количество взрослых"}
+            </label>
 
-        {/* Yemek */}
-        <div>
-          <label className="block text-sm mb-2">
-            {lang === "tr" ? "Yemek Seçimi" : "Выбор блюда"}
-          </label>
+            <select
+              value={adultCount}
+              onChange={(e) => changeAdultCount(e.target.value)}
+              className="w-full rounded-2xl border border-stone-300 bg-white px-4 py-3 outline-none"
+            >
+              {[1,2,3,4,5,6,7,8].map((num) => (
+                <option key={num} value={num}>
+                  {num}
+                </option>
+              ))}
+            </select>
+          </div>
 
-          <select
-            value={rsvpForm.meal_choice}
-            onChange={(e) => updateRsvpField("meal_choice", e.target.value)}
-            className="w-full rounded-2xl border border-stone-300 bg-white px-4 py-3 outline-none"
-          >
-          {visibleMealOptions.map((option) => (
-  <option key={option.id} value={option.option_label}>
-    {lang === "tr" ? option.label_tr : option.label_ru}
-  </option>
-))}
-          </select>
+          {/* Çocuk */}
+          <div>
+            <label className="block text-sm mb-2">
+              {lang === "tr"
+                ? "Çocuk Sayısı"
+                : "Количество детей"}
+            </label>
+
+            <select
+              value={childCount}
+              onChange={(e) =>
+                setChildCount(Number(e.target.value))
+              }
+              className="w-full rounded-2xl border border-stone-300 bg-white px-4 py-3 outline-none"
+            >
+              {[0,1,2,3,4,5].map((num) => (
+                <option key={num} value={num}>
+                  {num}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
 
-        {/* İçecek */}
-        <div>
-          <label className="block text-sm mb-2">
-            {lang === "tr" ? "İçecek Seçimi" : "Выбор напитка"}
-          </label>
+        {/* Misafirler */}
+        <div className="space-y-6">
+          {guestMenus.map((guest, index) => (
+            <div
+              key={index}
+              className="rounded-3xl border border-stone-200 bg-[#fbf8f2] p-6"
+            >
+              <h3 className="text-lg font-medium mb-5">
+                {lang === "tr"
+                  ? `Misafir ${index + 1}`
+                  : `Гость ${index + 1}`}
+              </h3>
 
-          <select
-            value={rsvpForm.drink_choice}
-            onChange={(e) => updateRsvpField("drink_choice", e.target.value)}
-            className="w-full rounded-2xl border border-stone-300 bg-white px-4 py-3 outline-none"
-          >
-           {visibleDrinkOptions.map((option) => (
-  <option key={option.id} value={option.option_label}>
-    {lang === "tr" ? option.label_tr : option.label_ru}
-  </option>
-))}
-          </select>
+              {/* Misafir Adı */}
+              <div className="mb-4">
+                <label className="block text-sm mb-2">
+                  {lang === "tr"
+                    ? "Misafir Ad Soyad"
+                    : "Имя и фамилия гостя"}
+                </label>
+
+                <input
+                  type="text"
+                  value={guest.name}
+                  onChange={(e) =>
+                    updateGuestMenu(
+                      index,
+                      "name",
+                      e.target.value
+                    )
+                  }
+                  className="w-full rounded-2xl border border-stone-300 bg-white px-4 py-3 outline-none"
+                />
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-6">
+
+                {/* Menü */}
+                <div>
+                  <label className="block text-sm mb-2">
+                    {lang === "tr"
+                      ? "Menü Seçimi"
+                      : "Выбор блюда"}
+                  </label>
+
+                  <select
+                    value={guest.meal_choice}
+                    onChange={(e) =>
+                      updateGuestMenu(
+                        index,
+                        "meal_choice",
+                        e.target.value
+                      )
+                    }
+                    className="w-full rounded-2xl border border-stone-300 bg-white px-4 py-3 outline-none"
+                  >
+                    <option value=""></option>
+
+                    {visibleMealOptions.map((option) => (
+                      <option
+                        key={option.id}
+                        value={option.option_label}
+                      >
+                        {lang === "tr"
+                          ? option.label_tr
+                          : option.label_ru}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                {/* İçecek */}
+                <div>
+                  <label className="block text-sm mb-2">
+                    {lang === "tr"
+                      ? "İçecek Seçimi"
+                      : "Выбор напитка"}
+                  </label>
+
+                  <select
+                    value={guest.drink_choice}
+                    onChange={(e) =>
+                      updateGuestMenu(
+                        index,
+                        "drink_choice",
+                        e.target.value
+                      )
+                    }
+                    className="w-full rounded-2xl border border-stone-300 bg-white px-4 py-3 outline-none"
+                  >
+                    <option value=""></option>
+
+                    {visibleDrinkOptions.map((option) => (
+                      <option
+                        key={option.id}
+                        value={option.option_label}
+                      >
+                        {lang === "tr"
+                          ? option.label_tr
+                          : option.label_ru}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+              </div>
+            </div>
+          ))}
         </div>
-
-      </div>
+      </>
     )}
 
     {/* Not */}
-    <div className="mt-6">
+    <div className="mt-8">
       <label className="block text-sm mb-2">
         {lang === "tr"
           ? "Alerji / Özel Not"
@@ -874,7 +1048,9 @@ if (optionData) {
 
       <textarea
         value={rsvpForm.note}
-        onChange={(e) => updateRsvpField("note", e.target.value)}
+        onChange={(e) =>
+          updateRsvpField("note", e.target.value)
+        }
         placeholder={
           lang === "tr"
             ? "Varsa bize iletmek istediğiniz not..."
@@ -884,8 +1060,15 @@ if (optionData) {
       />
     </div>
 
-  </div>
+    {/* Gönder */}
+    <button
+      type="button"
+      className="mt-8 w-full rounded-2xl bg-stone-900 text-white py-4 text-sm font-medium hover:bg-stone-800 transition"
+    >
+      {lang === "tr" ? "Gönder" : "Отправить"}
+    </button>
 
+  </div>
 </section>
 
 <section id="photos" className="max-w-5xl mx-auto px-6 py-24">
