@@ -295,7 +295,46 @@ function updateGuestMenu(
     )
   );
 }
+async function submitRsvp() {
+  try {
+    const payload = {
+      guest_name: rsvpForm.guest_name,
+      attending: rsvpForm.attending,
+      adult_count: adultCount,
+      child_count: childCount,
+      guests: guestMenus,
+      note: rsvpForm.note,
+      created_at: new Date().toISOString(),
+    };
 
+    const { error } = await supabase
+      .from("rsvp_responses")
+      .insert([payload]);
+
+    if (error) {
+      console.error("RSVP kayıt hatası:", error);
+      alert(lang === "tr" ? "Gönderim sırasında hata oluştu." : "Произошла ошибка при отправке.");
+      return;
+    }
+
+    alert(lang === "tr" ? "Katılım bilginiz başarıyla gönderildi." : "Ваш ответ успешно отправлен.");
+
+    setRsvpForm({
+      guest_name: "",
+      attending: "yes",
+      meal_choice: "",
+      drink_choice: "",
+      note: "",
+    });
+
+    setAdultCount(1);
+    setChildCount(0);
+    setGuestMenus([{ name: "", meal_choice: "", drink_choice: "" }]);
+  } catch (err) {
+    console.error(err);
+    alert(lang === "tr" ? "Beklenmeyen bir hata oluştu." : "Произошла непредвиденная ошибка.");
+  }
+}
   const [settings, setSettings] = useState<SiteSettings>({
     bride_name_tr: "NADEZHDA",
     bride_name_ru: "НАДЕЖДА",
@@ -1063,6 +1102,7 @@ if (optionData) {
     {/* Gönder */}
     <button
       type="button"
+      onClick={submitRsvp}
       className="mt-8 w-full rounded-2xl bg-stone-900 text-white py-4 text-sm font-medium hover:bg-stone-800 transition"
     >
       {lang === "tr" ? "Gönder" : "Отправить"}
