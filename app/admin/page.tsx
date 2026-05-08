@@ -357,13 +357,24 @@ export default function AdminPage() {
     const attending = responses.filter((x) => x.attending === true).length;
     const notAttending = responses.filter((x) => x.attending === false).length;
 
-    const mealCounts: Record<string, number> = {};
-    const drinkCounts: Record<string, number> = {};
+ const mealCounts: Record<string, number> = {};
+const drinkCounts: Record<string, number> = {};
 
-    responses.forEach((item) => {
-      if (item.meal_choice) mealCounts[item.meal_choice] = (mealCounts[item.meal_choice] || 0) + 1;
-      if (item.drink_choice) drinkCounts[item.drink_choice] = (drinkCounts[item.drink_choice] || 0) + 1;
+responses.forEach((item: any) => {
+  if (item.guest_menus && Array.isArray(item.guest_menus)) {
+    item.guest_menus.forEach((guest: any) => {
+      if (guest.meal_choice) {
+        mealCounts[guest.meal_choice] =
+          (mealCounts[guest.meal_choice] || 0) + 1;
+      }
+
+      if (guest.drink_choice) {
+        drinkCounts[guest.drink_choice] =
+          (drinkCounts[guest.drink_choice] || 0) + 1;
+      }
     });
+  }
+});
 
     return { total, attending, notAttending, mealCounts, drinkCounts };
   }, [responses]);
