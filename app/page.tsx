@@ -548,7 +548,7 @@ if (optionData) {
           {
             icon: Flower2,
             time: "19:15",
-            title: "Kokteyl",
+            title: "Banket",
             note: "İkramlar ve fotoğraf anıları.",
           },
         ]
